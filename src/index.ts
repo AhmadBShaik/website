@@ -1,9 +1,11 @@
 import puppeteer from 'puppeteer'
-const BASE_URL = "https://thetalentedindian.com/";
+import { Constants } from './Constants';
+import { CrawlCategories } from './CrawlCatogories'
+
 (async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto( `${BASE_URL}category/confluentia-of-talent/`);
+    await page.goto( `${Constants.BASE_URL}/category/confluentia-of-talent/`);
 
     const categories = await page.$$eval(
         'li.menu-item > ul.sub-menu > li > a',
@@ -18,10 +20,8 @@ const BASE_URL = "https://thetalentedindian.com/";
         }
     )
 
-    console.log(categories);
-
     for(let category of categories){
-        console.log(category);
+        CrawlCategories(category!)
     }
     
     browser.close();
