@@ -12,9 +12,9 @@ export async function CrawlCategories(categoryURL: string){
         'ul.mvp-blog-story-list-col > li.mvp-blog-story-col > a',
         (categoryContentLinks) => {
             return categoryContentLinks.map(e => e.getAttribute('href'))
-            .filter(e => e !== null)
-            .filter((elem, index, self) => {
-                return index === self.indexOf(elem);
+                .filter(e => e !== null)
+                .filter((elem, index, self) => {
+                    return index === self.indexOf(elem);
             });
         }
     )
