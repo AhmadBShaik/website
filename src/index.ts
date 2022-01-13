@@ -126,7 +126,7 @@ const getInstagramLinks = async (page: Page, url: string) => {
         (instaLinks) => {
             return instaLinks.map(e => e.getAttribute('href'))
                 .filter(e => e !== null)
-                // .filter(e => e?.includes("instagram.com"))
+                .filter(e => e?.includes("www.instagram.com"))
                 .filter((elem, index, self) => {
                     return index === self.indexOf(elem);
             });
