@@ -1,11 +1,13 @@
 import puppeteer from 'puppeteer'
 import { Constants } from './Constants';
-import { CrawlCategories } from './CrawlCatogories'
+import { CrawlCategories } from './CrawlCategories'
 
 (async () => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto( `${Constants.BASE_URL}/category/confluentia-of-talent/`);
+    await page.goto( `${Constants.BASE_URL}/category/confluentia-of-talent/`,{
+        waitUntil:'domcontentloaded'
+    });
 
     const categories = await page.$$eval(
         'li.menu-item > ul.sub-menu > li > a',
@@ -20,10 +22,15 @@ import { CrawlCategories } from './CrawlCatogories'
         }
     )
 
+    
     for(let category of categories){
         CrawlCategories(category!)
     }
+    // for(let category of categories){
+    //     console.log(category!)
+    // }
     
+    // CrawlCategories('https://www.thetalentedindian.com/category/confluentia-of-talent/dance/')
     browser.close();
 })();
 
