@@ -1,78 +1,63 @@
 import puppeteer, {Page} from 'puppeteer'
 import { Constants } from './Constants';
 import fs from 'fs';
-
-// import { CrawlCategories } from './CrawlCategories'
-
-// (async () => {
-//     const browser = await puppeteer.launch();
-//     const page = await browser.newPage();
-//     await page.goto( `${Constants.BASE_URL}/category/confluentia-of-talent/`,{
-//         waitUntil:'domcontentloaded'
-//     });
-
-//     const categories = await page.$$eval(
-//         'li.menu-item > ul.sub-menu > li > a',
-//         (categoryLinks) => {
-
-//             return categoryLinks
-//                 .map(e => e.getAttribute('href'))
-//                 .filter(e => e !== null)
-//                 .filter((elem, index, self) => {
-//                     return index === self.indexOf(elem);
-//                 });
-//         }
-//     )
-
-    
-//     for(let category of categories){
-//     }
-//     browser.close();
-// })();
-
-
+import { getRandomInt, getLastPartOfUrl, delay } from './utils'
 
 const crawl = async () => {
-    const browser = await puppeteer.launch({
-        // headless: false
-    });
+    const browser = await puppeteer.launch();
 
     const page = await browser.newPage();
 
     const dropdownCategories = await getDropdownCategoryURLs(page,`${Constants.BASE_URL}/category/confluentia-of-talent/`);
 
     let output: {[key:string]: object} = {}
+    let allInstagramLinksCount = 0;
 
+    const totalDropdownCategories = dropdownCategories.length;
+    let currentDropdownCatogory = 0;
     for(let dropdownCategory of dropdownCategories){
         const innerDropdownCategoryURLs = await getInnerLinksOfDropdownURLs(page, dropdownCategory!)
-        console.log("================================================")
-        console.log(dropdownCategory)
-        console.log("================================================")
-
+        let linksCount = 0;
         let dropdownCategoriesOutput: {[key: string]: object} = {}
+        
+        console.log(`\nstarted extracting ${getLastPartOfUrl(dropdownCategory!)}`)
+        console.log("============================================================")
+        
+        const totalInnerDropdownCategoryURLs = innerDropdownCategoryURLs.length;
+        let currentInnerDropdownCategoryURLNumber = 1;
         for(let innerDropdownCategoryURL of innerDropdownCategoryURLs){
             
-            console.log('\t-----------------------------------------------')
-            console.log("\t",innerDropdownCategoryURL)
-            console.log('\t-----------------------------------------------')
+            const randomInt = getRandomInt(5);
+            delay(randomInt*1000)
+            
+            console.log(`${currentInnerDropdownCategoryURLNumber}/${totalInnerDropdownCategoryURLs}   ${getLastPartOfUrl(innerDropdownCategoryURL!)} and delay ${randomInt} seconds`)
             const instagramLinks = await getInstagramLinks(page, innerDropdownCategoryURL!);
-            // console.log(instagramLinks)
-            dropdownCategoriesOutput[innerDropdownCategoryURL!] = instagramLinks;
-            output[dropdownCategory!] = dropdownCategoriesOutput;
-
-            // for(let listOfinstagramLinks of instagramLinks){
-            //     console.log("\t\t",listOfinstagramLinks)
-               
-            // }
-
-            // console.log(dropdownCategoriesOutput)
-        }
+            
+            
+            dropdownCategoriesOutput[getLastPartOfUrl(innerDropdownCategoryURL!)] = instagramLinks;
+            output[getLastPartOfUrl(dropdownCategory!)] = dropdownCategoriesOutput;
+            
+            
+            fs.writeFileSync(
+                'output.json',
+                JSON.stringify(output)
+                );
+                
+                linksCount += dropdownCategories.length;
+                currentInnerDropdownCategoryURLNumber += 1;
+            }
+            
+            
+            console.log(`extracted ${linksCount} instagram links from ${dropdownCategory}`)
+            console.log('\n------------------------------------------------------------\n')
+            
+            allInstagramLinksCount += linksCount;
+            currentDropdownCatogory += 1;
     }
-    fs.writeFileSync(
-        'output.json',
-        JSON.stringify(output)
-    )
-
+    console.log("============================================================")  
+    console.log("Complete!")  
+    console.log(`Total links extracted : ${allInstagramLinksCount}`)
+    console.log("============================================================\n")
 
     browser.close();
 }
