@@ -48,7 +48,7 @@ const crawl = async () => {
                 JSON.stringify(output)
             );
             delay(2000);
-            console.log(`\twriteoutput to output.json   ✔`);
+            console.log(`\twrite output to output.json   ✔`);
             
             linksCount += dropdownCategories.length;
             currentInnerDropdownCategoryURLNumber += 1;
