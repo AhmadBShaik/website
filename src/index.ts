@@ -14,37 +14,44 @@ const crawl = async () => {
     let allInstagramLinksCount = 0;
 
     const totalDropdownCategories = dropdownCategories.length;
-    let currentDropdownCatogory = 0;
+    let currentDropdownCategory = 0;
+    let currentDropdownCatogory = 1;
+
+    console.log(`\n\n${totalDropdownCategories} categories detected...`)
+    console.log(`Started crawling...`)
+
     for(let dropdownCategory of dropdownCategories){
+
         const innerDropdownCategoryURLs = await getInnerLinksOfDropdownURLs(page, dropdownCategory!)
         let linksCount = 0;
         let dropdownCategoriesOutput: {[key: string]: object} = {}
         
-        console.log(`\nstarted extracting ${getLastPartOfUrl(dropdownCategory!)}`)
-        console.log("============================================================")
+        console.log(`\n${currentDropdownCatogory}/${totalDropdownCategories} started extracting links from ${getLastPartOfUrl(dropdownCategory!)} category`)
+        console.log("============================================================\n")
         
         const totalInnerDropdownCategoryURLs = innerDropdownCategoryURLs.length;
         let currentInnerDropdownCategoryURLNumber = 1;
+        
         for(let innerDropdownCategoryURL of innerDropdownCategoryURLs){
             
             const randomInt = getRandomInt(5);
             delay(randomInt*1000)
             
-            console.log(`${currentInnerDropdownCategoryURLNumber}/${totalInnerDropdownCategoryURLs}   ${getLastPartOfUrl(innerDropdownCategoryURL!)} and delay ${randomInt} seconds`)
+            console.log(`\t${currentInnerDropdownCategoryURLNumber}/${totalInnerDropdownCategoryURLs}   ${getLastPartOfUrl(innerDropdownCategoryURL!)} | ⏳ delay ${randomInt} seconds`)
             const instagramLinks = await getInstagramLinks(page, innerDropdownCategoryURL!);
-            
-            
+                        
             dropdownCategoriesOutput[getLastPartOfUrl(innerDropdownCategoryURL!)] = instagramLinks;
             output[getLastPartOfUrl(dropdownCategory!)] = dropdownCategoriesOutput;
-            
             
             fs.writeFileSync(
                 'output.json',
                 JSON.stringify(output)
-                );
-                
-                linksCount += dropdownCategories.length;
-                currentInnerDropdownCategoryURLNumber += 1;
+            );
+            delay(2000);
+            console.log(`\twriteoutput to output.json   ✔`);
+            
+            linksCount += dropdownCategories.length;
+            currentInnerDropdownCategoryURLNumber += 1;
             }
             
             
