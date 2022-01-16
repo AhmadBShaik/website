@@ -37,7 +37,7 @@ export const getInstagramData = async () => {
    
     for(let link in filterdInstaLinks){
         
-        const randomInt = getRandomInt(8);
+        const randomInt = 5 + getRandomInt(8);
         const waitTime = (randomInt*1000);
         delay(waitTime);
         
@@ -61,7 +61,6 @@ export const getInstagramData = async () => {
         );
         await page.waitForNavigation();
 
-        break;
     }    
 
  browser.close();   
