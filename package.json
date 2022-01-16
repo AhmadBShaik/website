@@ -7,9 +7,17 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^17.0.8",
+    "@types/puppeteer": "^5.4.4",
     "typescript": "^4.5.4"
   },
   "scripts": {
-    "crawl": "tsc && node dist/index.js"
+    "crawl": "tsc && node dist/index.js",
+    "generate": "tsc && node dist/driver/generate_json.js",
+    "filter": "tsc && node dist/driver/filter_unique.js",
+    "extract": "tsc && node dist/crawlers/instagram/crawl_insta.js"
+  },
+  "dependencies": {
+    "dotenv": "^12.0.3",
+    "puppeteer": "^13.0.1"
   }
 }
