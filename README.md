@@ -11,10 +11,16 @@ Create filteredLinks.json from data.json which includes only unique instagram li
 
 `yarn filter`
 
+**Note: before proceceeding to step3**
+- provide instagram username, instagram password in .env file
+- example 
+  - INSTA_USERNAME=username
+  - INSTA_PASSWORD=password
+- turn on VPN
 ## step 3
 
-`yarn extract`
 
+`yarn extract`
 extract data from instagram and store it in result.json
 
 ## Exports
