@@ -11,13 +11,19 @@
     "typescript": "^4.5.4"
   },
   "scripts": {
-    "crawl": "tsc && node dist/index.js",
     "generate": "tsc && node dist/driver/generate_json.js",
     "filter": "tsc && node dist/driver/filter_unique.js",
-    "extract": "tsc && node dist/crawlers/instagram/crawl_insta.js"
+    "extract": "tsc && node dist/crawlers/instagram/crawl_insta.js",
+
+    "convert2csv": "node src/converters/convert2csv.js",
+    "convert2excel": "node src/converters/convert2excel.js"
   },
   "dependencies": {
     "dotenv": "^12.0.3",
+    "excel4node": "^1.7.2",
+    "js2excel": "^1.0.1",
+    "json-2-csv": "^3.16.0",
+    "json2csv": "^5.0.6",
     "puppeteer": "^13.0.1"
   }
 }

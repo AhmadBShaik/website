@@ -1,1 +1,34 @@
-[{"username":"Puja Kumar","profession":"Artist","posts":"740","followers":"8,837","following":"412","instaHandle":"artist_pujakumar"}]
+[
+    {
+        "username": "Puja Kumar",
+        "profession": "Artist",
+        "posts": "740",
+        "followers": "8,837",
+        "following": "412",
+        "instaHandle": "artist_pujakumar"
+    },
+    {
+        "username": "Guin Srikanta",
+        "profession": "Artist",
+        "posts": "314",
+        "followers": "2,912",
+        "following": "968",
+        "instaHandle": "guin_srikanta_watercolor"
+    },
+    {
+        "username": "Mahesh Honule",
+        "profession": "Artist",
+        "posts": "93",
+        "followers": "3,319",
+        "following": "221",
+        "instaHandle": "maheshhonule"
+    },
+    {
+        "username": "Mahua Pal",
+        "profession": "Artist",
+        "posts": "265",
+        "followers": "10.1k",
+        "following": "199",
+        "instaHandle": "mahua.pal.art"
+    }
+]
