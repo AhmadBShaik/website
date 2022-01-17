@@ -1,18 +1,18 @@
 
 ## step 1 
 
-Generates data.json file which includes all instagram links from thetalentedindian.com website
+Generates data.json file which includes all targeted links from source website
 
 `yarn generate`
 
 ## step 2
 
-Create filteredLinks.json from data.json which includes only unique instagram links
+Create filteredLinks.json from data.json which includes only unique targeted links
 
 `yarn filter`
 
 **Note: before proceceeding to step3**
-- provide instagram username, instagram password in .env file
+- provide username, password in .env file
 - example 
   - INSTA_USERNAME=username
   - INSTA_PASSWORD=password
@@ -21,7 +21,7 @@ Create filteredLinks.json from data.json which includes only unique instagram li
 
 
 `yarn extract`
-extract data from instagram and store it in result.json
+extract data from target and store it in result.json
 
 ## Exports
 
