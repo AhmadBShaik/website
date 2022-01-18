@@ -2,7 +2,7 @@ import { Page } from 'puppeteer';
 
 export const getInfo = async (page: Page, url: string) => {
     await page.goto(url, {
-        waitUntil:'domcontentloaded'
+        waitUntil:'load'
     });
     
     const username = await page.$eval(

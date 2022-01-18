@@ -37,33 +37,35 @@ export const getInstagramData = async () => {
    
     for(let link in filterdInstaLinks){
         
-        const randomInt = 5 + getRandomInt(8);
+        const randomInt = 5 + getRandomInt(3);
         const waitTime = (randomInt*1000);
         delay(waitTime);
         
           
         console.log(`wait for ${waitTime/1000} seconds`)
-        const { username, profession, posts, followers, following } = await getInfo(page,link);
+        
+        const { username, profession, posts, followers, following } = await getInfo(page,link!);
         const instaHandle = getInstaHandle(link)
-     
-        console.log({ username, profession, posts, followers, following, instaHandle })
+        const areaOfExpertise = filterdInstaLinks[link];
+        console.log({ username, areaOfExpertise, profession, posts, followers, following, instaHandle })
         resultList.push({ 
-            username, 
-            profession, 
-            posts, 
-            followers, 
-            following, 
-            instaHandle 
+            "Creator":username, 
+            "Area of Expertise":areaOfExpertise,
+            "Profession":profession, 
+            "Insta Handle":instaHandle,
+            "Posts":posts, 
+            "Followers":followers, 
+            "Following":following
         })
         fs.writeFileSync(
             './src/output/result.json',
             JSON.stringify(resultList)
         );
-        await page.waitForNavigation();
-
+        // await page.waitForNavigation();
+        // break;
     }    
 
- browser.close();   
+//  browser.close();   
 }
 
 

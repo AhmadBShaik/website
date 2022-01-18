@@ -7,12 +7,14 @@ const data = JSON.parse(fs.readFileSync('./src/output/result.json'));
 
 
 const headingColumnNames = [
-    "Name",
+    "Creator Name",
+    "Area of Expertise",
     "Profession",
+    "Insta Handle",
     "Posts",
     "Followers",
-    "Following",
-    "InstaHandle"
+    "Following"
+    
 ]
 
 

@@ -1,34 +1,83 @@
 [
     {
-        "username": "Puja Kumar",
-        "profession": "Artist",
-        "posts": "740",
-        "followers": "8,837",
-        "following": "412",
-        "instaHandle": "artist_pujakumar"
+        "Creator": "Puja Kumar",
+        "Area of Expertise": "art-and-craft",
+        "Profession": "Artist",
+        "Insta Handle": "artist_pujakumar",
+        "Posts": "741",
+        "Followers": "8,963",
+        "Following": "412"
     },
     {
-        "username": "Guin Srikanta",
-        "profession": "Artist",
-        "posts": "314",
-        "followers": "2,912",
-        "following": "968",
-        "instaHandle": "guin_srikanta_watercolor"
+        "Creator": "Guin Srikanta",
+        "Area of Expertise": "art-and-craft",
+        "Profession": "Artist",
+        "Insta Handle": "guin_srikanta_watercolor",
+        "Posts": "315",
+        "Followers": "2,906",
+        "Following": "1,043"
     },
     {
-        "username": "Mahesh Honule",
-        "profession": "Artist",
-        "posts": "93",
-        "followers": "3,319",
-        "following": "221",
-        "instaHandle": "maheshhonule"
+        "Creator": "Mahesh Honule",
+        "Area of Expertise": "art-and-craft",
+        "Profession": "Artist",
+        "Insta Handle": "maheshhonule",
+        "Posts": "93",
+        "Followers": "3,341",
+        "Following": "221"
     },
     {
-        "username": "Mahua Pal",
-        "profession": "Artist",
-        "posts": "265",
-        "followers": "10.1k",
-        "following": "199",
-        "instaHandle": "mahua.pal.art"
+        "Creator": "Mahua Pal",
+        "Area of Expertise": "art-and-craft",
+        "Profession": "Artist",
+        "Insta Handle": "mahua.pal.art",
+        "Posts": "265",
+        "Followers": "10.2k",
+        "Following": "200"
+    },
+    {
+        "Creator": "Samir Mondal",
+        "Area of Expertise": "art-and-craft",
+        "Profession": "Artist",
+        "Insta Handle": "samirmondal_watercolour",
+        "Posts": "145",
+        "Followers": "4,660",
+        "Following": "290"
+    },
+    {
+        "Creator": "Sanjana Goenka",
+        "Area of Expertise": "art-and-craft",
+        "Profession": "Artist",
+        "Insta Handle": "lineandcoconut",
+        "Posts": "237",
+        "Followers": "11.7k",
+        "Following": "999"
+    },
+    {
+        "Creator": "Upasna Modi Poddar",
+        "Area of Expertise": "art-and-craft",
+        "Profession": "Artist",
+        "Insta Handle": "oopsidoodledagain",
+        "Posts": "492",
+        "Followers": "3,400",
+        "Following": "824"
+    },
+    {
+        "Creator": "The Killjoy Cat",
+        "Area of Expertise": "art-and-craft",
+        "Profession": "Artist",
+        "Insta Handle": "thekilljoycat",
+        "Posts": "127",
+        "Followers": "1,107",
+        "Following": "610"
+    },
+    {
+        "Creator": "| Uncle Subbu Comics |",
+        "Area of Expertise": "art-and-craft",
+        "Profession": "Artist",
+        "Insta Handle": "unclesubbucomics",
+        "Posts": "260",
+        "Followers": "10.2k",
+        "Following": "385"
     }
 ]
