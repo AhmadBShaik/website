@@ -2,7 +2,7 @@ const converter = require('json-2-csv');
 const fs = require('fs');
 
 
-const data = JSON.parse(fs.readFileSync('./src/output/result.json'));
+const data = JSON.parse(fs.readFileSync('./src/output/convertable.json'));
 
 
 converter.json2csvAsync(data).then(csv => {

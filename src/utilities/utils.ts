@@ -9,7 +9,7 @@ export const getLastPartOfUrl = (url: string): string => {
     return decomposedURL[decomposedURL.length - 1]
 }
     
-export const delay = (ms:number) => new Promise(resolve => setTimeout(resolve, ms))
+export const delay = (ms:number) => new Promise(resolve => setTimeout(()=>resolve(" "), ms))
 
 
 export const removeDuplicateInstagramLinks = ()=> {
@@ -41,4 +41,13 @@ export const getInstaHandle = (url:string) => {
     const decomposedURL = url.split("www.instagram.com").filter(e => e);
     const handleWithSlashes = decomposedURL[decomposedURL.length - 1]
     return handleWithSlashes.substring(1,handleWithSlashes.length-1);
+}
+
+
+export const detectEmailAddress = (desc:string) => {
+    return desc.match(/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/gi)
+}
+
+export const detectPhoneNumber = (desc:string) => {
+    return desc.match(/(?:[-+() ]*\d){10,13}/g)
 }

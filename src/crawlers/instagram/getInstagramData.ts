@@ -10,7 +10,6 @@ import filteredLinks from '../../output/filteredLinks.json'
 import { getInfo } from './userInfo/getInfo';
 
 
-
 export const getInstagramData = async () => {
     const browser = await puppeteer.launch({
         headless:false,
@@ -32,40 +31,51 @@ export const getInstagramData = async () => {
     
     
     const resultList: object[] = []
-    
-    const filterdInstaLinks :{[key:string] :string} = filteredLinks;
+    let completedList: {[key:string]:string} = {}
+
+    const filteredInstaLinks :{[key:string] :string} = filteredLinks;
    
-    for(let link in filterdInstaLinks){
+    for(let link in filteredInstaLinks){
         
-        const randomInt = 5 + getRandomInt(3);
-        const waitTime = (randomInt*1000);
+        const randomInt = 5 + getRandomInt(8);
+        const waitTime = (randomInt*60000);
         delay(waitTime);
         
           
-        console.log(`wait for ${waitTime/1000} seconds`)
+        try{
+            console.log(`wait for ${randomInt*60000} seconds`)
         
-        const { username, profession, posts, followers, following } = await getInfo(page,link!);
-        const instaHandle = getInstaHandle(link)
-        const areaOfExpertise = filterdInstaLinks[link];
-        console.log({ username, areaOfExpertise, profession, posts, followers, following, instaHandle })
-        resultList.push({ 
-            "Creator":username, 
-            "Area of Expertise":areaOfExpertise,
-            "Profession":profession, 
-            "Insta Handle":instaHandle,
-            "Posts":posts, 
-            "Followers":followers, 
-            "Following":following
-        })
-        fs.writeFileSync(
-            './src/output/result.json',
-            JSON.stringify(resultList)
-        );
-        // await page.waitForNavigation();
-        // break;
+            const { username, profession, posts, followers, following, desc } = await getInfo(page,link!);
+            const instaHandle = getInstaHandle(link)
+            const areaOfExpertise = filteredInstaLinks[link];
+            console.log({ username, areaOfExpertise, profession, posts, followers, following, instaHandle, desc })
+            resultList.push({ 
+                "Creator Name":username, 
+                "Area of Expertise":areaOfExpertise,
+                "Profession":profession, 
+                "Insta Handle":instaHandle,
+                "Posts":posts, 
+                "Followers":followers, 
+                "Following":following,
+                "Contact Details":desc
+            })
+            
+            
+            
+            fs.writeFileSync(
+                './src/output/result.json',
+                JSON.stringify(resultList)
+            );
+
+
+        }
+        catch{
+            console.log(`profile is unavailable or removed: ${link}`)            
+        }        
+        
     }    
 
-//  browser.close();   
+ browser.close();   
 }
 
 

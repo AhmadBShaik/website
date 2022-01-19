@@ -3,7 +3,7 @@ const xl = require('excel4node');
 const wb = new xl.Workbook();
 const ws = wb.addWorksheet('Worksheet Name');
 
-const data = JSON.parse(fs.readFileSync('./src/output/result.json'));
+const data = JSON.parse(fs.readFileSync('./src/output/convertable.json'));
 
 
 const headingColumnNames = [
@@ -13,8 +13,8 @@ const headingColumnNames = [
     "Insta Handle",
     "Posts",
     "Followers",
-    "Following"
-    
+    "Following",
+    "Contact Details"
 ]
 
 

@@ -23,6 +23,9 @@ Create filteredLinks.json from data.json which includes only unique targeted lin
 `yarn extract`
 extract data from target and store it in result.json
 
+`yarn make_convertable`
+make result.json convertable by creating convertable.json
+
 ## Exports
 
 ### Convert to CSV
