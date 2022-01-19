@@ -22,6 +22,14 @@ for(let e in convertable){
          res += detectPhoneNumber(convertable[e]['Contact Details'])
      }
     convertable[e]['Contact Details'] = res
+
+    const tempAreaOfExpertise = convertable[e]['Area of Expertise'].split("-")
+    
+    for (let i = 0; i < tempAreaOfExpertise.length; i++) {
+        tempAreaOfExpertise[i] = tempAreaOfExpertise[i].charAt(0).toUpperCase() + tempAreaOfExpertise[i].slice(1);
+        
+    }
+    convertable[e]['Area of Expertise'] = tempAreaOfExpertise.join(" ")
 }
 
 fs.writeFileSync(
