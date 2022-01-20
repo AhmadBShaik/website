@@ -12,7 +12,8 @@ import { getInfo } from './userInfo/getInfo';
 
 export const getInstagramData = async () => {
     const browser = await puppeteer.launch({
-        headless:false,
+        // Set headless: true after first login  
+        headless: false,
     });
 
     const page = await browser.newPage();
@@ -37,13 +38,13 @@ export const getInstagramData = async () => {
    
     for(let link in filteredInstaLinks){
         
-        const randomInt = 5 + getRandomInt(8);
-        const waitTime = (randomInt*60000);
-        delay(waitTime);
-        
+        const randomInt = 20 + getRandomInt(10);
+        const waitTime = (randomInt*1000);
+        console.log(`wait for ${randomInt} seconds to send next request...`)
+        await delay(waitTime);
+        console.log(`sending request to fetch details...`)
           
         try{
-            console.log(`wait for ${randomInt*60000} seconds`)
         
             const { username, profession, posts, followers, following, desc } = await getInfo(page,link!);
             const instaHandle = getInstaHandle(link)
@@ -59,9 +60,7 @@ export const getInstagramData = async () => {
                 "Following":following,
                 "Contact Details":desc
             })
-            
-            
-            
+                        
             fs.writeFileSync(
                 './src/output/result.json',
                 JSON.stringify(resultList)

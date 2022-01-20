@@ -44,7 +44,7 @@ export const crawlTTI = async () => {
         for(let innerDropdownCategoryURL of innerDropdownCategoryURLs){
             
             const randomInt = getRandomInt(5);
-            delay(randomInt*1000);
+            await delay(randomInt*1000);
             
             console.log(
                 `\t${currentInnerDropdownCategoryURLNumber}/${totalInnerDropdownCategoryURLs}` +  
@@ -59,7 +59,7 @@ export const crawlTTI = async () => {
                 './src/output/data.json',
                 JSON.stringify(output)
             );
-            delay(2000);
+            await delay(2000);
             console.log(`\twrite output to output.json   ✔`);
             
             linksCount += dropdownCategories.length;
