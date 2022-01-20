@@ -40,7 +40,7 @@ export const getInstagramData = async () => {
         
         const randomInt = 20 + getRandomInt(10);
         const waitTime = (randomInt*1000);
-        console.log(`wait for ${randomInt} seconds to send next request...`)
+        console.log(`⏳ wait for ${randomInt} seconds to send next request...`)
         await delay(waitTime);
         console.log(`sending request to fetch details...`)
           
@@ -65,7 +65,7 @@ export const getInstagramData = async () => {
                 './src/output/result.json',
                 JSON.stringify(resultList)
             );
-
+            console.log("write output to result.json   ✔")
 
         }
         catch{

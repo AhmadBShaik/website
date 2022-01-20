@@ -60,7 +60,7 @@ export const crawlTTI = async () => {
                 JSON.stringify(output)
             );
             await delay(2000);
-            console.log(`\twrite output to output.json   ✔`);
+            console.log(`\twrite output to data.json   ✔`);
             
             linksCount += dropdownCategories.length;
             currentInnerDropdownCategoryURLNumber += 1;

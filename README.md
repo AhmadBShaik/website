@@ -1,13 +1,30 @@
+## **Initial Setup**
+### **step 1**
 
-## step 1 
+Make sure you have nodejs installed in your machine.
 
-Generates data.json file which includes all targeted links from source website
+Install "yarn" using npm install
+
+`npm install --global yarn`
+
+### **step 2**
+
+Install all the necessary dependencies using the following command
+
+`yarn`
+
+
+## **Run Scripts**
+
+### **step 1** 
+
+Generates data.json file in src/output, which will store **all targeted links from source website**
 
 `yarn generate`
 
-## step 2
+### **step 2**
 
-Create filteredLinks.json from data.json which includes only unique targeted links
+Create **filteredLinks.json** from data.json which includes **only unique targeted links**
 
 `yarn filter`
 
@@ -17,16 +34,19 @@ Create filteredLinks.json from data.json which includes only unique targeted lin
   - INSTA_USERNAME=username
   - INSTA_PASSWORD=password
 - turn on VPN
-## step 3
+### **step 3**
 
-
-`yarn extract`
 extract data from target and store it in result.json
 
-`yarn make_convertable`
+`yarn extract`
+
+### **step 4**
+
 make result.json convertable by creating convertable.json
 
-## Exports
+`yarn make_convertable`
+
+### Exports
 
 ### Convert to CSV
 `yarn convert2csv`
