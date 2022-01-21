@@ -8,7 +8,9 @@ import { getInstagramLinks } from './getInstagramLinks';
 import { getInnerLinksOfDropdownURLs } from './getInnerLinksOfDropdownURLs';
 
 export const crawlTTI = async () => {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        headless:false
+    });
 
     const page = await browser.newPage();
 
@@ -28,56 +30,64 @@ export const crawlTTI = async () => {
 
     for(let dropdownCategory of dropdownCategories){
 
-        const innerDropdownCategoryURLs = await getInnerLinksOfDropdownURLs(page, dropdownCategory!);
-        let linksCount = 0;
-        let dropdownCategoriesOutput: {[key: string]: object} = {};
-        
-        console.log(
-            `\n${currentDropdownCategory}/${totalDropdownCategories}` + 
-            ` started extracting links from ${getLastPartOfUrl(dropdownCategory!)} category`
-        );
-        console.log("============================================================\n");
-        
-        const totalInnerDropdownCategoryURLs = innerDropdownCategoryURLs.length;
-        let currentInnerDropdownCategoryURLNumber = 1;
-        
-        for(let innerDropdownCategoryURL of innerDropdownCategoryURLs){
-            
-            const randomInt = getRandomInt(5);
-            await delay(randomInt*1000);
+        try{
+            const innerDropdownCategoryURLs = await getInnerLinksOfDropdownURLs(page, dropdownCategory!);
+            let linksCount = 0;
+            let dropdownCategoriesOutput: {[key: string]: object} = {};
             
             console.log(
-                `\t${currentInnerDropdownCategoryURLNumber}/${totalInnerDropdownCategoryURLs}` +  
-                `   ${getLastPartOfUrl(innerDropdownCategoryURL!)} | ⏳ delay ${randomInt} seconds`
+                `\n${currentDropdownCategory}/${totalDropdownCategories}` + 
+            ` started extracting links from ${getLastPartOfUrl(dropdownCategory!)} category`
             );
-            const instagramLinks = await getInstagramLinks(page, innerDropdownCategoryURL!);
+            console.log("============================================================\n");
+            
+            const totalInnerDropdownCategoryURLs = innerDropdownCategoryURLs.length;
+            let currentInnerDropdownCategoryURLNumber = 1;
+            
+            for(let innerDropdownCategoryURL of innerDropdownCategoryURLs){
+                
+                const randomInt = getRandomInt(5);
+                await delay(randomInt*1000);
+                
+                console.log(
+                    `\t${currentInnerDropdownCategoryURLNumber}/${totalInnerDropdownCategoryURLs}` +  
+                    `   ${getLastPartOfUrl(innerDropdownCategoryURL!)} | ⏳ delay ${randomInt} seconds`
+                    );
+                    const instagramLinks = await getInstagramLinks(page, innerDropdownCategoryURL!);
+                    
+                    dropdownCategoriesOutput[getLastPartOfUrl(innerDropdownCategoryURL!)] = instagramLinks;
+                    output[getLastPartOfUrl(dropdownCategory!)] = dropdownCategoriesOutput;
+                    
+                    fs.writeFileSync(
+                        './src/output/data.json',
+                        JSON.stringify(output)
+                        );
+                        await delay(2000);
+                        console.log(`\twrite output to data.json   ✔`);
                         
-            dropdownCategoriesOutput[getLastPartOfUrl(innerDropdownCategoryURL!)] = instagramLinks;
-            output[getLastPartOfUrl(dropdownCategory!)] = dropdownCategoriesOutput;
-            
-            fs.writeFileSync(
-                './src/output/data.json',
-                JSON.stringify(output)
-            );
-            await delay(2000);
-            console.log(`\twrite output to data.json   ✔`);
-            
-            linksCount += dropdownCategories.length;
-            currentInnerDropdownCategoryURLNumber += 1;
+                        linksCount += dropdownCategories.length;
+                        currentInnerDropdownCategoryURLNumber += 1;
+                        
+                        
+                        console.log(`extracted ${linksCount} instagram links from ${dropdownCategory}`);
+                        console.log('\n------------------------------------------------------------\n');
+                        
+                        allInstagramLinksCount += linksCount;
+                        currentDropdownCategory += 1;
+                    }
+                        
             }
-            
-            
-            console.log(`extracted ${linksCount} instagram links from ${dropdownCategory}`);
-            console.log('\n------------------------------------------------------------\n');
-            
-            allInstagramLinksCount += linksCount;
-            currentDropdownCategory += 1;
+            catch(e){
+                console.log("An error occured:", e)
+            }    
+        }
+
+        console.log("============================================================");
+        console.log("Complete!");
+        console.log(`Total links extracted : ${allInstagramLinksCount}`);
+        console.log("============================================================\n");
+        
+        browser.close();
     }
-    console.log("============================================================");
-    console.log("Complete!");
-    console.log(`Total links extracted : ${allInstagramLinksCount}`);
-    console.log("============================================================\n");
-
-    browser.close();
-}
-
+    
+            
