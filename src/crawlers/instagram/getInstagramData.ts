@@ -35,15 +35,17 @@ export const getInstagramData = async () => {
     let completedList: {[key:string]:string} = {}
 
     const filteredInstaLinks :{[key:string] :string} = filteredLinks;
-   
+    
+    const totalInstaLinks = Object.keys(filteredLinks).length;
+    let currentInstaLink = 1;
     for(let link in filteredInstaLinks){
         
         const randomInt = 20 + getRandomInt(10);
         const waitTime = (randomInt*1000);
         console.log(`⏳ wait for ${randomInt} seconds to send next request...`)
         await delay(waitTime);
-        console.log(`sending request to fetch details...`)
-          
+        console.log(`sending request ${currentInstaLink} of ${totalInstaLinks}`)
+        currentInstaLink++;
         try{
         
             const { username, profession, posts, followers, following, desc } = await getInfo(page,link!);
