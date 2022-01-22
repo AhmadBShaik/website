@@ -40,7 +40,7 @@ export const getInstagramData = async () => {
     let currentInstaLink = 1;
     for(let link in filteredInstaLinks){
         
-        const randomInt = 20 + getRandomInt(10);
+        const randomInt = 15 + getRandomInt(5);
         const waitTime = (randomInt*1000);
         console.log(`⏳ wait for ${randomInt} seconds to send next request...`)
         await delay(waitTime);
