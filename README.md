@@ -34,7 +34,6 @@ Create **filteredLinks.json** from data.json which includes **only unique target
 - example 
   - INSTA_USERNAME=username
   - INSTA_PASSWORD=password
-- turn on VPN (Optional)
 ### **step 3**
 
 extract data from target and store it in result.json
