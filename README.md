@@ -29,6 +29,7 @@ Create **filteredLinks.json** from data.json which includes **only unique target
 `yarn filter`
 
 **Note: before proceceeding to step3**
+- create a file with name `.env` in root directory (where package.json exists)
 - provide username, password in .env file
 - example 
   - INSTA_USERNAME=username
