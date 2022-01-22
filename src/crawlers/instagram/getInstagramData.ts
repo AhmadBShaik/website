@@ -13,7 +13,7 @@ import { getInfo } from './userInfo/getInfo';
 export const getInstagramData = async () => {
     const browser = await puppeteer.launch({
         // Set headless: true after first login  
-        headless: false,
+        // headless: false,
     });
 
     const page = await browser.newPage();
