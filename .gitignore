@@ -2,6 +2,3 @@ node_modules
 dist/
 yarn-error.log
 yarn.lock
-.env
-InstaData.csv
-InstaData.xlsx

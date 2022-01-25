@@ -14,11 +14,11 @@ export const crawlTTI = async () => {
     const page = await browser.newPage();
     
     // categories in confluentia of talent
-    const dropdownCategories = await getDropdownCategoryURLs(
+    let dropdownCategories = await getDropdownCategoryURLs(
         page,
         `${Constants.BASE_URL}/category/confluentia-of-talent/`
     );
-    
+    dropdownCategories = [dropdownCategories[3]]
     let output: {[key:string]: object} = {};
     let allInstagramLinksCount = 0;
 

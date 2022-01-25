@@ -13,7 +13,7 @@ import { getInfo } from './userInfo/getInfo';
 export const getInstagramData = async () => {
     const browser = await puppeteer.launch({
         // Set headless: true after first login  
-        // headless: false,
+        headless: false,
     });
 
     const page = await browser.newPage();
@@ -35,12 +35,11 @@ export const getInstagramData = async () => {
     let completedList: {[key:string]:string} = {}
 
     const filteredInstaLinks :{[key:string] :string} = filteredLinks;
-    
     const totalInstaLinks = Object.keys(filteredLinks).length;
     let currentInstaLink = 1;
     for(let link in filteredInstaLinks){
         
-        const randomInt = 15 + getRandomInt(5);
+        const randomInt = 20 + getRandomInt(10);
         const waitTime = (randomInt*1000);
         console.log(`⏳ wait for ${randomInt} seconds to send next request...`)
         await delay(waitTime);
@@ -70,10 +69,10 @@ export const getInstagramData = async () => {
             console.log("write output to result.json   ✔")
 
         }
-        catch{
-            console.log(`profile is unavailable or removed: ${link}`)            
+        catch(e){
+            // console.log(`profile is unavailable or removed: ${link}`)
+            console.log(e);          
         }        
-        
     }    
 
  browser.close();   
